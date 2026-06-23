@@ -4,6 +4,9 @@ import { places, gallery } from '../data/travels'
 
 const CHINA_CENTER = [104.5, 36]
 const CHINA_ZOOM = 5
+const WORLD_CENTER = [70, 18]   // 世界视图固定中心（让中国偏右、整体居中）
+const WORLD_ZOOM = 1.4
+const WORLD_THRESHOLD = 2.4     // 缩放低于此值视为“世界视图”
 const MIN_ZOOM = 1
 const MAX_ZOOM = 12
 const FONT = '"LXGW WenKai Screen", "PingFang SC", "Microsoft YaHei", sans-serif'
@@ -127,6 +130,19 @@ export default function MapSection({ onSelectPlace }) {
         if (params.seriesName === '相册') chart.getZr().setCursorStyle('pointer')
       })
       chart.on('mouseout', () => chart.getZr().setCursorStyle('default'))
+
+      // 缩放越过“世界视图”阈值时，把视角固定到合理的世界框景
+      let wasWorld = false
+      chart.on('georoam', () => {
+        const geo = chart.getOption().geo?.[0]
+        if (!geo) return
+        const isWorld = geo.zoom <= WORLD_THRESHOLD
+        if (isWorld && !wasWorld) {
+          // 刚进入世界视图：归位到固定世界中心
+          chart.setOption({ geo: { center: WORLD_CENTER } })
+        }
+        wasWorld = isWorld
+      })
 
       const onResize = () => chart.resize()
       window.addEventListener('resize', onResize)
