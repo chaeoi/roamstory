@@ -16,7 +16,7 @@ function resolvePhotoUrl(photo, photoBaseUrl) {
 }
 
 async function loadTravelData() {
-  const response = await fetch('data/travel-data.json');
+  const response = await fetch('data/travel.json');
   if (!response.ok) throw new Error(`Failed to load travel data: ${response.status}`);
 
   const data = await response.json();
@@ -106,7 +106,7 @@ function resetWorldView() {
 }
 
 async function loadMap() {
-  const res = await fetch('maps/world-china-detail.json');
+  const res = await fetch('maps/china.json');
   const geo = await res.json();
   normalizeMap(geo);
   echarts.registerMap('china-detail', geo);
