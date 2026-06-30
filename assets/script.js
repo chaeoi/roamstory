@@ -3,16 +3,10 @@ let places = [];
 let gallery = [];
 let PHOTO_PLACES = new Set();
 
-function isAbsolutePhotoUrl(src) {
-  return /^(?:[a-z][a-z0-9+.-]*:)?\/\//i.test(src) || src.startsWith('/') || src.startsWith('data:');
-}
-
-function resolvePhotoUrl(photo, photoBaseUrl) {
+// 每张照片在数据里直接写完整 URL（可来自不同来源），此处仅做取值与清洗
+function photoUrl(photo) {
   const src = typeof photo === 'string' ? photo : photo && photo.src;
-  if (!src) return '';
-  if (isAbsolutePhotoUrl(src)) return src;
-  const base = photoBaseUrl.endsWith('/') ? photoBaseUrl : photoBaseUrl + '/';
-  return base + src.replace(/^\/+/, '');
+  return typeof src === 'string' ? src.trim() : '';
 }
 
 async function loadTravelData() {
@@ -20,12 +14,11 @@ async function loadTravelData() {
   if (!response.ok) throw new Error(`Failed to load travel data: ${response.status}`);
 
   const data = await response.json();
-  const photoBaseUrl = typeof data.photoBaseUrl === 'string' ? data.photoBaseUrl : 'gallery/';
   places = Array.isArray(data.places) ? data.places : [];
   gallery = (Array.isArray(data.gallery) ? data.gallery : [])
     .map((item) => ({
       place: item.place,
-      photos: (Array.isArray(item.photos) ? item.photos : []).map((photo) => resolvePhotoUrl(photo, photoBaseUrl)).filter(Boolean),
+      photos: (Array.isArray(item.photos) ? item.photos : []).map(photoUrl).filter(Boolean),
     }))
     .filter((item) => item.place && item.photos.length);
   PHOTO_PLACES = new Set(gallery.map((g) => g.place));
@@ -106,10 +99,10 @@ function resetWorldView() {
 }
 
 async function loadMap() {
-  const res = await fetch('maps/china.json');
+  const res = await fetch('maps/world.json');
   const geo = await res.json();
   normalizeMap(geo);
-  echarts.registerMap('china-detail', geo);
+  echarts.registerMap('world', geo);
 
   chart = echarts.init(document.getElementById('map-chart'), null, { renderer: 'canvas' });
 
@@ -133,7 +126,7 @@ async function loadMap() {
       },
     },
     geo: {
-      map: 'china-detail',
+      map: 'world',
       roam: true,
       center: WORLD_CENTER,
       zoom: MIN_ZOOM,
