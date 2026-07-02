@@ -35,7 +35,6 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   to { transform: rotate(360deg); }
 }
 
-/* ---------- Navbar ---------- */
 .navbar {
   position: fixed;
   top: 0; left: 0; right: 0;
@@ -72,11 +71,9 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   color: #fff;
 }
 
-/* ---------- Views ---------- */
 .view { display: none; }
 .view.is-active { display: block; }
 
-/* ---------- Map ---------- */
 .map-section {
   position: fixed;
   left: 0; right: 0;
@@ -135,7 +132,6 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   color: #9ca3af;
 }
 
-/* ---------- Album ---------- */
 .album {
   padding: 80px 24px 64px;
   background: #fff;
@@ -211,7 +207,6 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 .thumb:hover .thumb__overlay { background: rgba(0, 0, 0, 0.1); }
 
-/* ---------- Lightbox ---------- */
 .lightbox {
   position: fixed;
   inset: 0;

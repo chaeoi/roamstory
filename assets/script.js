@@ -1,9 +1,7 @@
-// ===================== 数据装载 =====================
 let places = [];
 let gallery = [];
 let PHOTO_PLACES = new Set();
 
-// 每张照片在数据里直接写完整 URL（可来自不同来源），此处仅做取值与清洗
 function photoUrl(photo) {
   const src = typeof photo === 'string' ? photo : photo && photo.src;
   return typeof src === 'string' ? src.trim() : '';
@@ -23,14 +21,13 @@ async function loadTravelData() {
     .filter((item) => item.place && item.photos.length);
   PHOTO_PLACES = new Set(gallery.map((g) => g.place));
 }
-// ===================== 路由 =====================
 const navLinks = document.querySelectorAll('.navbar__link');
 const views = {
   map: document.getElementById('view-map'),
   album: document.getElementById('view-album'),
 };
 
-let pendingFocus = null; // 点击地图标记后待定位的地点
+let pendingFocus = null;
 
 function currentRoute() {
   return window.location.hash.replace('#/', '') || 'map';
@@ -48,7 +45,6 @@ function applyRoute() {
   });
 
   if (view === 'map') {
-    // 地图容器在重新可见后可能需要重算尺寸
     if (chart) requestAnimationFrame(() => chart.resize());
   } else if (view === 'album' && pendingFocus) {
     const place = pendingFocus;
@@ -64,28 +60,16 @@ function selectPlace(place) {
   window.location.hash = '#/album';
 }
 
-// ===================== 地图 =====================
 const WORLD_CENTER = [0, 0];
 const WORLD_BOUNDS = [[-180, 90], [180, -90]];
+const CHINA_CENTER = [104, 36];
+const CHINA_ZOOM = 5;
 const MIN_ZOOM = 1;
 const MAX_ZOOM = 12;
 const FONT = '"LXGW WenKai Screen", "PingFang SC", "Microsoft YaHei", sans-serif';
 
 let chart = null;
 let resizeRaf = null;
-
-// 区域名改中文 + 南海诸岛归一化
-function normalizeMap(geoJson) {
-  (geoJson.features || []).forEach((f) => {
-    const p = f.properties || {};
-    if (p.adchar === 'JD' || p.adcode === '100000_JD') {
-      p.name = '南海诸岛';
-    } else if (p.NAME_ZH) {
-      p.name = p.NAME_ZH;
-    }
-    f.properties = p;
-  });
-}
 
 const toPoint = (pl) => ({
   name: pl.name,
@@ -101,7 +85,6 @@ function resetWorldView() {
 async function loadMap() {
   const res = await fetch('maps/world.json');
   const geo = await res.json();
-  normalizeMap(geo);
   echarts.registerMap('world', geo);
 
   chart = echarts.init(document.getElementById('map-chart'), null, { renderer: 'canvas' });
@@ -128,8 +111,8 @@ async function loadMap() {
     geo: {
       map: 'world',
       roam: true,
-      center: WORLD_CENTER,
-      zoom: MIN_ZOOM,
+      center: CHINA_CENTER,
+      zoom: CHINA_ZOOM,
       boundingCoords: WORLD_BOUNDS,
       left: 0, right: 0, top: 0, bottom: 0,
       preserveAspect: 'contain',
@@ -208,8 +191,7 @@ async function loadMap() {
   document.getElementById('map-loading').style.display = 'none';
 }
 
-// ===================== 相册渲染 =====================
-const placeEls = {}; // place name -> 地点块 DOM
+const placeEls = {};
 
 function renderAlbum() {
   document.getElementById('map-count').textContent = String(places.length);
@@ -263,8 +245,7 @@ function focusPlace(place) {
   setTimeout(() => el.classList.remove('is-highlight'), 1600);
 }
 
-// ===================== Lightbox =====================
-let viewer = null; // { item, index }
+let viewer = null;
 let lightboxEl = null;
 
 function openViewer(item, index) {
@@ -317,12 +298,11 @@ function renderViewer() {
   if (!lightboxEl) {
     lightboxEl = document.createElement('div');
     lightboxEl.className = 'lightbox';
-    lightboxEl.addEventListener('click', closeViewer); // 点击遮罩关闭
+    lightboxEl.addEventListener('click', closeViewer);
     document.body.append(lightboxEl);
   }
   lightboxEl.innerHTML = '';
 
-  // 顶栏
   const top = document.createElement('div');
   top.className = 'lightbox__top';
   top.addEventListener('click', (e) => e.stopPropagation());
@@ -342,7 +322,6 @@ function renderViewer() {
   closeBtn.addEventListener('click', closeViewer);
   top.append(title, closeBtn);
 
-  // 主图区
   const main = document.createElement('div');
   main.className = 'lightbox__main';
   const img = document.createElement('img');
@@ -368,7 +347,6 @@ function renderViewer() {
 
   lightboxEl.append(top, main);
 
-  // 底部缩略图条
   if (multi) {
     const strip = document.createElement('div');
     strip.className = 'lightbox__strip';
@@ -396,7 +374,6 @@ window.addEventListener('keydown', (e) => {
   else if (e.key === 'ArrowRight') step(1);
 });
 
-// ===================== 启动 =====================
 async function boot() {
   await loadTravelData();
   renderAlbum();
