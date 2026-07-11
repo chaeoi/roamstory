@@ -1,21 +1,21 @@
 {
   "places": [
     { "name": "合肥", "latLng": [31.85198, 117.278069] },
-    { "name": "济南", "latLng": [36.651199, 117.120094] },
-    { "name": "上海", "latLng": [31.230391, 121.473701] },
-    { "name": "武汉", "latLng": [30.59285, 114.305542] },
-    { "name": "潍坊", "latLng": [36.706963, 119.161751] },
-    { "name": "苏州", "latLng": [31.298973, 120.585289] },
     { "name": "张家港", "latLng": [31.875572, 120.556007] },
-    { "name": "太原", "latLng": [37.866568, 112.593729] },
-    { "name": "晋中", "latLng": [37.685144, 112.756464] },
+    { "name": "上海", "latLng": [31.230391, 121.473701] },
+    { "name": "苏州", "latLng": [31.298973, 120.585289] },
     { "name": "六安", "latLng": [31.74933, 116.53949] },
     { "name": "天堂寨", "latLng": [31.141125, 115.785284] },
+    { "name": "武汉", "latLng": [30.59285, 114.305542] },
+    { "name": "济南", "latLng": [36.651199, 117.120094] },
+    { "name": "潍坊", "latLng": [36.706963, 119.161751] },
     { "name": "昌邑", "latLng": [36.85884, 119.39862] },
     { "name": "青州", "latLng": [36.68456, 118.47966] },
-    { "name": "厦门", "latLng": [24.48405, 118.03394] },
-    { "name": "黄山", "latLng": [29.728912, 118.329026] },
     { "name": "旌德", "latLng": [30.28636, 118.54045] },
+    { "name": "黄山", "latLng": [29.728912, 118.329026] },
+    { "name": "太原", "latLng": [37.866568, 112.593729] },
+    { "name": "晋中", "latLng": [37.685144, 112.756464] },
+    { "name": "厦门", "latLng": [24.48405, 118.03394] },
     { "name": "泰安", "latLng": [36.19198, 117.13526] },
     { "name": "池州", "latLng": [30.624896, 117.529222] },
     { "name": "北京", "latLng": [39.909401, 116.406353] },
@@ -47,9 +47,6 @@
     { "name": "香港", "latLng": [22.284778, 114.170634] },
     { "name": "莆田", "latLng": [25.464563, 119.12203] },
     { "name": "平潭", "latLng": [25.553737, 119.787881] },
-    { "name": "福州", "latLng": [26.074508, 119.296494] },
-    { "name": "泉州", "latLng": [24.874132, 118.675676] },
-    { "name": "汕头", "latLng": [23.354091, 116.681972] },
     { "name": "杭州", "latLng": [30.254605, 120.163993] },
     { "name": "义乌", "latLng": [29.309349, 120.073468] },
     { "name": "兰州", "latLng": [36.060798, 103.834228] },
@@ -62,7 +59,10 @@
     { "name": "敦煌", "latLng": [40.142141, 94.66201] },
     { "name": "嘉峪关", "latLng": [39.800827, 98.227762] },
     { "name": "张掖", "latLng": [38.924766, 100.449858] },
-    { "name": "祁连县", "latLng": [38.177112, 100.253211] }
+    { "name": "祁连县", "latLng": [38.177112, 100.253211] },
+    { "name": "福州", "latLng": [26.074508, 119.296494] },
+    { "name": "泉州", "latLng": [24.874132, 118.675676] },
+    { "name": "汕头", "latLng": [23.354091, 116.681972] }
   ],
   "gallery": [
     {
@@ -74,107 +74,13 @@
       ]
     },
     {
-      "place": "大理",
+      "place": "深圳",
       "photos": [
-        "https://cdn.canghai.org/images/26063009.jpg",
-        "https://cdn.canghai.org/images/26063007.jpg",
-        "https://cdn.canghai.org/images/26063003.jpg"
-      ]
-    },
-    {
-      "place": "丽江",
-      "photos": [
-        "https://cdn.canghai.org/images/26063009.jpg",
-        "https://cdn.canghai.org/images/26063012.jpg",
-        "https://cdn.canghai.org/images/26063005.jpg"
-      ]
-    },
-    {
-      "place": "稻城亚丁",
-      "photos": [
-        "https://cdn.canghai.org/images/26063005.jpg",
-        "https://cdn.canghai.org/images/26063012.jpg",
-        "https://cdn.canghai.org/images/26063007.jpg"
-      ]
-    },
-    {
-      "place": "敦煌",
-      "photos": [
-        "https://cdn.canghai.org/images/26063004.jpg",
-        "https://cdn.canghai.org/images/26063005.jpg",
-        "https://cdn.canghai.org/images/26063008.jpg"
-      ]
-    },
-    {
-      "place": "青海湖",
-      "photos": [
-        "https://cdn.canghai.org/images/26063011.jpg",
-        "https://cdn.canghai.org/images/26063007.jpg",
-        "https://cdn.canghai.org/images/26063005.jpg"
-      ]
-    },
-    {
-      "place": "北京",
-      "photos": [
-        "https://cdn.canghai.org/images/26063013.jpg",
-        "https://cdn.canghai.org/images/26063009.jpg",
-        "https://cdn.canghai.org/images/26063002.jpg"
-      ]
-    },
-    {
-      "place": "西安",
-      "photos": [
-        "https://cdn.canghai.org/images/26063013.jpg",
-        "https://cdn.canghai.org/images/26063009.jpg",
-        "https://cdn.canghai.org/images/26063004.jpg"
-      ]
-    },
-    {
-      "place": "厦门",
-      "photos": [
-        "https://cdn.canghai.org/images/26063003.jpg",
-        "https://cdn.canghai.org/images/26063002.jpg",
-        "https://cdn.canghai.org/images/26063013.jpg"
-      ]
-    },
-    {
-      "place": "上海",
-      "photos": [
-        "https://cdn.canghai.org/images/26063002.jpg",
-        "https://cdn.canghai.org/images/26063006.jpg",
-        "https://cdn.canghai.org/images/26063013.jpg"
-      ]
-    },
-    {
-      "place": "重庆",
-      "photos": [
-        "https://cdn.canghai.org/images/26063001.jpg",
-        "https://cdn.canghai.org/images/26063008.jpg",
-        "https://cdn.canghai.org/images/26063002.jpg"
-      ]
-    },
-    {
-      "place": "香港",
-      "photos": [
-        "https://cdn.canghai.org/images/26063006.jpg",
-        "https://cdn.canghai.org/images/26063002.jpg",
-        "https://cdn.canghai.org/images/26063003.jpg"
-      ]
-    },
-    {
-      "place": "杭州",
-      "photos": [
-        "https://cdn.canghai.org/images/26063007.jpg",
-        "https://cdn.canghai.org/images/26063008.jpg",
-        "https://cdn.canghai.org/images/26063009.jpg"
-      ]
-    },
-    {
-      "place": "青州",
-      "photos": [
-        "https://cdn.canghai.org/images/26063010.jpg",
-        "https://cdn.canghai.org/images/26063009.jpg",
-        "https://cdn.canghai.org/images/26063008.jpg"
+        "https://cdn.canghai.org/images/27071106.jpg",
+        "https://cdn.canghai.org/images/27071107.jpg",
+        "https://cdn.canghai.org/images/27071108.jpg",
+        "https://cdn.canghai.org/images/27071109.jpg",
+        "https://cdn.canghai.org/images/27071110.jpg"
       ]
     }
   ]
